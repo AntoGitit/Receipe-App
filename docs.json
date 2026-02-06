@@ -1,0 +1,418 @@
+{
+  "applicationName": "Recipe Muse",
+  "version": "1.0",
+  "lastUpdated": "February 2026",
+  "tagline": "Your Culinary Companion",
+  "introduction": "Welcome to Recipe Muse, your personal culinary companion! This guide will help you get started with the app and make the most of its features.",
+  
+  "gettingStarted": {
+    "title": "Getting Started",
+    "installation": {
+      "description": "Recipe Muse is a single-file web application that runs entirely in your browser. No server, no installation, no dependencies required!",
+      "steps": [
+        "Save the File: Download or save the recipe-app.html file to your computer",
+        "Open in Browser: Double-click the file or right-click and select 'Open with' → your preferred browser",
+        "That's it! The app will load and you're ready to cook"
+      ],
+      "supportedBrowsers": [
+        "Google Chrome (recommended)",
+        "Mozilla Firefox",
+        "Microsoft Edge",
+        "Safari",
+        "Any modern web browser with JavaScript enabled"
+      ]
+    }
+  },
+  
+  "features": {
+    "title": "Features Overview",
+    "coreFeatures": [
+      {
+        "name": "Dynamic Welcome Messages",
+        "description": "Every time you visit the home page, you'll be greeted with a different inspirational message!",
+        "types": [
+          "Cooking quotes",
+          "Food jokes",
+          "Haiku poetry about food",
+          "Motivational messages"
+        ]
+      },
+      {
+        "name": "Personalized Experience",
+        "description": "Enter your first name, select your favorite cuisine from 27+ options worldwide, and get recipe recommendations tailored to your taste"
+      },
+      {
+        "name": "Smart Cuisine Search",
+        "description": "Type-ahead search functionality helps you find cuisines quickly",
+        "features": [
+          "Start typing (e.g., 'Ita...' for Italian)",
+          "Matching cuisines appear instantly",
+          "Click to select from the dropdown"
+        ]
+      },
+      {
+        "name": "Recipe Recommendations",
+        "description": "Get detailed recipes including ingredients list, step-by-step instructions, timing information, and visual organization",
+        "includes": [
+          "Ingredients list - Everything you need",
+          "Step-by-step instructions - Easy to follow",
+          "Timing information - Prep time, cook time, and servings",
+          "Visual organization - Clean, readable format"
+        ]
+      },
+      {
+        "name": "Recipe Interactions",
+        "description": "Three ways to respond to each recipe",
+        "interactions": [
+          {
+            "icon": "👍",
+            "action": "Like",
+            "description": "Show you enjoyed the recipe"
+          },
+          {
+            "icon": "👎",
+            "action": "Not for me",
+            "description": "Get a different recipe from the same cuisine"
+          },
+          {
+            "icon": "⭐",
+            "action": "Add to Favorites",
+            "description": "Save for later"
+          }
+        ]
+      },
+      {
+        "name": "Favorites Collection",
+        "description": "Save unlimited recipes to your personal collection, view all favorites in a beautiful grid layout, quick access to saved recipes, and remove recipes you no longer need"
+      }
+    ]
+  },
+  
+  "howToUse": {
+    "title": "How to Use the App",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Arrive at the Home Page",
+        "description": "When you first open Recipe Muse, you'll see a colorful header with the app name, a unique welcome message (changes each visit!), and two navigation buttons: Home and Favorites"
+      },
+      {
+        "step": 2,
+        "title": "Enter Your Information",
+        "description": "Fill out the simple form",
+        "fields": [
+          {
+            "name": "First Name",
+            "instruction": "Type your first name in the text field. This personalizes your experience"
+          },
+          {
+            "name": "Favorite Cuisine",
+            "instruction": "Click in the 'Favorite Cuisine' field, start typing the name of your preferred cuisine, and select from the dropdown suggestions that appear",
+            "availableCuisines": [
+              "Italian", "Chinese", "Mexican", "Japanese", "Indian", "Thai",
+              "French", "Greek", "Spanish", "Korean", "Vietnamese", "Turkish",
+              "Lebanese", "Moroccan", "Brazilian", "American", "Caribbean",
+              "Ethiopian", "German", "Portuguese", "Russian", "Malaysian",
+              "Indonesian", "Peruvian", "British", "Mediterranean", "Middle Eastern"
+            ]
+          }
+        ]
+      },
+      {
+        "step": 3,
+        "title": "Get Your Recipe",
+        "actions": [
+          "Click the 'Get My Recipe' button",
+          "Wait for the brief animation (✨ Crafting your perfect recipe...)",
+          "Your personalized recipe appears!"
+        ]
+      },
+      {
+        "step": 4,
+        "title": "Review Your Recipe",
+        "recipeCardContents": {
+          "header": [
+            "Recipe name in large, elegant font",
+            "Preparation time (⏱️)",
+            "Cooking time (🔥)",
+            "Number of servings (🍽️)"
+          ],
+          "ingredientsSection": [
+            "Complete list of all ingredients",
+            "Quantities specified",
+            "Easy to scan bullet list"
+          ],
+          "instructionsSection": [
+            "Numbered, step-by-step directions",
+            "Clear, concise language",
+            "Professional cooking techniques"
+          ]
+        }
+      },
+      {
+        "step": 5,
+        "title": "Interact with the Recipe",
+        "options": [
+          {
+            "button": "👍 Like Button",
+            "description": "Click to show you like the recipe. Button changes to '❤️ Loved it!'. Visual feedback confirms your choice"
+          },
+          {
+            "button": "👎 Not for me Button",
+            "description": "Click if the recipe isn't what you want. Instantly generates a new recipe from the same cuisine. Keep clicking until you find the perfect match"
+          },
+          {
+            "button": "⭐ Add to Favorites Button",
+            "description": "Click to save the recipe to your favorites. Button turns orange and displays '⭐ Favorited'. Recipe is now permanently saved (until you remove it)"
+          }
+        ]
+      }
+    ]
+  },
+  
+  "managingFavorites": {
+    "title": "Managing Favorites",
+    "viewingFavorites": {
+      "description": "How to view your saved recipes",
+      "steps": [
+        "Click the 'Favorites' button in the navigation bar",
+        "All saved recipes appear in a grid layout",
+        "Each card shows: Recipe name, Cuisine type, Prep and cook times"
+      ]
+    },
+    "openingFavoriteRecipe": {
+      "description": "How to open and view a favorite recipe in detail",
+      "steps": [
+        "Click on any recipe card in the Favorites page",
+        "You'll automatically return to the Home page",
+        "The full recipe details will be displayed",
+        "You can interact with it (like, dislike, or unfavorite)"
+      ]
+    },
+    "removingFromFavorites": {
+      "methods": [
+        {
+          "method": "From Favorites Page",
+          "steps": [
+            "Click 'Remove from favorites' link on any recipe card",
+            "Recipe is immediately removed from your collection"
+          ]
+        },
+        {
+          "method": "From Recipe View",
+          "steps": [
+            "When viewing a favorited recipe on the Home page",
+            "Click the '⭐ Favorited' button to unfavorite it",
+            "The button changes back to '⭐ Add to Favorites'"
+          ]
+        }
+      ]
+    },
+    "dataPersistence": {
+      "description": "Your favorites are stored locally in your browser using localStorage",
+      "advantages": [
+        "Favorites persist even after closing the browser",
+        "No account or login required",
+        "Data stays private on your device"
+      ],
+      "limitations": [
+        "Clearing browser data will delete your favorites",
+        "Favorites are device-specific (not synced across devices)"
+      ]
+    }
+  },
+  
+  "tipsAndTricks": {
+    "title": "Tips & Tricks",
+    "tips": [
+      {
+        "category": "Try Different Cuisines",
+        "advice": [
+          "Don't stick to one cuisine type",
+          "Each cuisine has multiple recipes in the database",
+          "Explore and discover new favorites!"
+        ]
+      },
+      {
+        "category": "Build Your Collection",
+        "advice": [
+          "Save recipes you want to try later",
+          "Create your personal cookbook",
+          "Mix different cuisines in your favorites"
+        ]
+      },
+      {
+        "category": "Finding Inspiration",
+        "advice": [
+          "Refresh the page to see a new welcome message",
+          "Use the welcome messages as cooking inspiration",
+          "Come back daily for new quotes and haiku!"
+        ]
+      },
+      {
+        "category": "Recipe Discovery",
+        "advice": [
+          "If you don't like a recipe, click 'Not for me'",
+          "You'll get a different recipe instantly",
+          "Keep exploring until you find the perfect dish"
+        ]
+      },
+      {
+        "category": "Quick Access",
+        "advice": [
+          "Bookmark the HTML file in your browser",
+          "Add it to your desktop for easy access",
+          "Open it whenever you need recipe inspiration"
+        ]
+      }
+    ],
+    "keyboardNavigation": {
+      "Tab": "Move between form fields",
+      "Enter": "Submit the form",
+      "Spacebar": "Click buttons when focused",
+      "Escape": "Close cuisine dropdown"
+    }
+  },
+  
+  "troubleshooting": {
+    "title": "Troubleshooting",
+    "commonIssues": [
+      {
+        "problem": "Page won't load",
+        "solutions": [
+          "Make sure JavaScript is enabled in your browser",
+          "Try a different browser",
+          "Check that the HTML file isn't corrupted"
+        ]
+      },
+      {
+        "problem": "Cuisine dropdown doesn't appear",
+        "solutions": [
+          "Make sure you're typing at least one character",
+          "Click directly in the input field",
+          "Try typing the full cuisine name and pressing Enter"
+        ]
+      },
+      {
+        "problem": "Favorites aren't saving",
+        "solutions": [
+          "Check if browser is in private/incognito mode (localStorage won't persist)",
+          "Ensure cookies and local storage are enabled",
+          "Try clearing browser cache and reloading"
+        ]
+      },
+      {
+        "problem": "Recipe doesn't generate",
+        "solutions": [
+          "Make sure you filled in both fields (name and cuisine)",
+          "Select a cuisine from the dropdown suggestions",
+          "Refresh the page and try again"
+        ]
+      },
+      {
+        "problem": "Welcome message doesn't change",
+        "solutions": [
+          "Hard refresh the page (Ctrl+F5 or Cmd+Shift+R)",
+          "Close and reopen the browser tab"
+        ]
+      }
+    ]
+  },
+  
+  "technicalInformation": {
+    "title": "Technical Information",
+    "browserRequirements": {
+      "requirements": [
+        "Modern browser (released within last 2 years)",
+        "JavaScript enabled",
+        "LocalStorage support",
+        "Minimum screen width: 320px (mobile compatible)"
+      ]
+    },
+    "fileInformation": {
+      "fileName": "recipe-app.html",
+      "fileType": "Single HTML file (includes CSS and JavaScript)",
+      "approximateSize": "32KB",
+      "dependencies": "None (completely standalone)",
+      "internetRequired": "No (runs 100% offline)"
+    },
+    "dataStorage": {
+      "api": "Browser's localStorage API",
+      "maxStorage": "~5MB (more than enough for hundreds of recipes)",
+      "dataFormat": "JSON",
+      "privacy": "All data stays on your device"
+    }
+  },
+  
+  "featureHighlights": {
+    "title": "What Makes Recipe Muse Special",
+    "highlights": [
+      {
+        "category": "Beautiful Design",
+        "features": [
+          "Retro-modern cookbook aesthetic",
+          "Warm, inviting color palette",
+          "Professional typography",
+          "Smooth animations and transitions"
+        ]
+      },
+      {
+        "category": "Thoughtful UX",
+        "features": [
+          "Clean, intuitive interface",
+          "No clutter or confusion",
+          "Mobile-responsive design",
+          "Accessible and easy to use"
+        ]
+      },
+      {
+        "category": "Quality Content",
+        "features": [
+          "Authentic recipes from around the world",
+          "Clear, professional instructions",
+          "Realistic cooking times",
+          "Tested ingredient ratios"
+        ]
+      },
+      {
+        "category": "Zero Setup",
+        "features": [
+          "No installation required",
+          "No account creation",
+          "No internet needed after first load",
+          "Complete privacy"
+        ]
+      }
+    ]
+  },
+  
+  "futureEnhancements": {
+    "title": "Future Enhancements (Ideas for Expansion)",
+    "description": "While the current version is complete and functional, here are ways you could enhance it",
+    "ideas": [
+      "Add more recipes to each cuisine",
+      "Include recipe photos",
+      "Add ingredient substitution suggestions",
+      "Create a shopping list feature",
+      "Add recipe rating system",
+      "Include dietary filters (vegetarian, vegan, gluten-free)",
+      "Add recipe search functionality",
+      "Include nutritional information"
+    ]
+  },
+  
+  "support": {
+    "title": "Need Help?",
+    "steps": [
+      "Check that your browser is up to date",
+      "Try the app in a different browser",
+      "Make sure JavaScript is enabled",
+      "Clear your browser cache and try again"
+    ]
+  },
+  
+  "credits": {
+    "description": "Recipe Muse was created as a beginner-friendly web application to help you discover and save delicious recipes from around the world.",
+    "designPhilosophy": "Clean, warm, and inviting—like a cherished cookbook passed down through generations."
+  }
+}
