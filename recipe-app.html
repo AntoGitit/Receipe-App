@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Muse - Your Culinary Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Karla:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FFF8F0;
+            --burnt-orange: #D4692A;
+            --deep-green: #2C5234;
+            --sage: #8B9D83;
+            --charcoal: #2B2B2B;
+            --gold: #C9A959;
+            --light-sage: #E8EDE7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Karla', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Decorative header pattern */
+        .header-decoration {
+            height: 8px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--burnt-orange) 0px,
+                var(--burnt-orange) 20px,
+                var(--deep-green) 20px,
+                var(--deep-green) 40px,
+                var(--gold) 40px,
+                var(--gold) 60px
+            );
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--deep-green) 0%, #3a6b45 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(201, 169, 89, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(212, 105, 42, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--cream);
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--light-sage);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            background: var(--charcoal);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 80%;
+            height: 2px;
+            background: var(--burnt-orange);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn:hover::after,
+        .nav-btn.active::after {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .nav-btn.active {
+            color: var(--burnt-orange);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-message {
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #e07a3d 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(212, 105, 42, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-message::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 120px;
+            color: rgba(255, 255, 255, 0.1);
+            line-height: 1;
+        }
+
+        .welcome-message p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: white;
+            text-align: center;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+            line-height: 1.8;
+        }
+
+        .form-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            border: 3px solid var(--light-sage);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            letter-spacing: 0.3px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--sage);
+            border-radius: 12px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--cream);
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--burnt-orange);
+            box-shadow: 0 0 0 3px rgba(212, 105, 42, 0.1);
+            background: white;
+        }
+
+        .cuisine-dropdown {
+            position: relative;
+        }
+
+        .cuisine-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 2px solid var(--sage);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            max-height: 250px;
+            overflow-y: auto;
+            display: none;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .cuisine-suggestions.show {
+            display: block;
+        }
+
+        .cuisine-item {
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--light-sage);
+        }
+
+        .cuisine-item:last-child {
+            border-bottom: none;
+        }
+
+        .cuisine-item:hover {
+            background: var(--light-sage);
+            color: var(--deep-green);
+            font-weight: 600;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--deep-green) 0%, #3a6b45 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Karla', sans-serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(44, 82, 52, 0.3);
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 82, 52, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .recipe-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+            border-left: 6px solid var(--burnt-orange);
+            position: relative;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .recipe-card h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--deep-green);
+            margin-bottom: 1rem;
+        }
+
+        .recipe-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--sage);
+        }
+
+        .recipe-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .recipe-section {
+            margin: 2rem 0;
+        }
+
+        .recipe-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--burnt-orange);
+            margin-bottom: 1rem;
+        }
+
+        .recipe-section ul,
+        .recipe-section ol {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .recipe-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .recipe-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--light-sage);
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid;
+            border-radius: 12px;
+            font-family: 'Karla', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .like-btn {
+            background: white;
+            border-color: var(--deep-green);
+            color: var(--deep-green);
+        }
+
+        .like-btn:hover,
+        .like-btn.liked {
+            background: var(--deep-green);
+            color: white;
+        }
+
+        .dislike-btn {
+            background: white;
+            border-color: var(--sage);
+            color: var(--sage);
+        }
+
+        .dislike-btn:hover {
+            background: var(--sage);
+            color: white;
+        }
+
+        .favorite-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, #d4b969 100%);
+            border-color: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .favorite-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(201, 169, 89, 0.4);
+        }
+
+        .favorite-btn.favorited {
+            background: linear-gradient(135deg, var(--burnt-orange) 0%, #e07a3d 100%);
+            border-color: var(--burnt-orange);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--light-sage);
+            border-radius: 20px;
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: var(--sage);
+            font-size: 1.1rem;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .favorite-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--gold);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .favorite-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--deep-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .favorite-card p {
+            color: var(--sage);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .remove-favorite {
+            background: none;
+            border: none;
+            color: var(--burnt-orange);
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .remove-favorite:hover {
+            color: var(--charcoal);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--sage);
+        }
+
+        .greeting-section {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .greeting-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--deep-green);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .form-section,
+            .recipe-card {
+                padding: 2rem;
+            }
+
+            .recipe-actions {
+                flex-direction: column;
+            }
+
+            .favorites-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-decoration"></div>
+    <header>
+        <h1>Recipe Muse</h1>
+        <p class="tagline">Your Culinary Companion</p>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" data-page="home">Home</button>
+        <button class="nav-btn" data-page="favorites">Favorites</button>
+    </nav>
+
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="welcome-message">
+                <p id="welcome-text">Loading inspiration...</p>
+            </div>
+
+            <div id="greeting-container"></div>
+
+            <div class="form-section">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--deep-green); margin-bottom: 2rem; text-align: center;">Tell Us About Yourself</h2>
+                
+                <form id="user-form">
+                    <div class="form-group">
+                        <label for="firstName">Your First Name</label>
+                        <input type="text" id="firstName" required placeholder="Enter your first name">
+                    </div>
+
+                    <div class="form-group cuisine-dropdown">
+                        <label for="cuisine">Favorite Cuisine</label>
+                        <input 
+                            type="text" 
+                            id="cuisine" 
+                            required 
+                            placeholder="Start typing... (e.g., Italian, Thai, Mexican)"
+                            autocomplete="off"
+                        >
+                        <div class="cuisine-suggestions" id="cuisine-suggestions"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Get My Recipe</button>
+                </form>
+            </div>
+
+            <div id="recommendation-container"></div>
+        </div>
+
+        <!-- Favorites Page -->
+        <div id="favorites-page" class="page">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--deep-green); margin-bottom: 2rem; text-align: center;">Your Favorite Recipes</h2>
+            <div id="favorites-container">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📚</div>
+                    <h3>No Favorites Yet</h3>
+                    <p>Start exploring recipes and save your favorites here!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Welcome messages pool
+        const welcomeMessages = [
+            "A recipe is a story that ends with a good meal. 🍽️",
+            "Cooking is like love—it should be entered into with abandon or not at all.",
+            "In the kitchen, we dance with flavors and create edible memories. ✨",
+            "Food tastes better when you eat it with your family and friends. 🌟",
+            "Life is too short for boring food—let's make something amazing! 🎨",
+            "Every recipe tells a story; yours is waiting to be written. 📖",
+            "The secret ingredient is always love (and a pinch of salt). 💛",
+            "Why did the tomato blush? Because it saw the salad dressing! 🍅",
+            "I'm on a seafood diet. I see food, and I eat it! 🐟",
+            "Cooking: Where 'just a pinch' means whatever your heart desires! 🧂",
+            "My kitchen is my therapy room, my food is my medicine. 🌿",
+            "Good food is the foundation of genuine happiness. 😊",
+            "Fresh flavors dance,\nSimple ingredients unite,\nMagic on the plate. 🍃",
+            "Garlic, oil, and herbs,\nTransform the ordinary meal,\nInto poetry. 🌺",
+            "Steam rises gently,\nAromatic spices whisper,\nHome is in this bowl. 🥘"
+        ];
+
+        // Cuisine database
+        const cuisines = [
+            'Italian', 'Chinese', 'Mexican', 'Japanese', 'Indian', 'Thai', 
+            'French', 'Greek', 'Spanish', 'Korean', 'Vietnamese', 'Turkish',
+            'Lebanese', 'Moroccan', 'Brazilian', 'American', 'Caribbean', 
+            'Ethiopian', 'German', 'Portuguese', 'Russian', 'Malaysian',
+            'Indonesian', 'Peruvian', 'British', 'Mediterranean', 'Middle Eastern'
+        ];
+
+        // Recipe database organized by cuisine
+        const recipeDatabase = {
+            'italian': [
+                {
+                    name: 'Classic Margherita Pizza',
+                    prepTime: '20 mins',
+                    cookTime: '12 mins',
+                    servings: '4',
+                    ingredients: [
+                        '500g pizza dough',
+                        '400g San Marzano tomatoes',
+                        '250g fresh mozzarella',
+                        'Fresh basil leaves',
+                        'Extra virgin olive oil',
+                        'Sea salt',
+                        'Garlic (2 cloves)'
+                    ],
+                    instructions: [
+                        'Preheat your oven to 475°F (245°C) with a pizza stone inside.',
+                        'Roll out the pizza dough to desired thickness.',
+                        'Crush the tomatoes and season with salt, garlic, and olive oil.',
+                        'Spread sauce on dough, leaving a 1-inch border.',
+                        'Tear mozzarella and distribute evenly.',
+                        'Bake for 10-12 minutes until crust is golden and cheese bubbles.',
+                        'Top with fresh basil and drizzle with olive oil before serving.'
+                    ]
+                },
+                {
+                    name: 'Creamy Carbonara',
+                    prepTime: '10 mins',
+                    cookTime: '15 mins',
+                    servings: '4',
+                    ingredients: [
+                        '400g spaghetti',
+                        '200g pancetta or guanciale',
+                        '4 large eggs',
+                        '100g Pecorino Romano cheese',
+                        'Black pepper',
+                        'Salt'
+                    ],
+                    instructions: [
+                        'Cook pasta in salted boiling water until al dente.',
+                        'Dice and cook pancetta until crispy.',
+                        'Whisk eggs with grated cheese and plenty of black pepper.',
+                        'Reserve 1 cup pasta water, then drain pasta.',
+                        'Remove pancetta from heat, add pasta and toss.',
+                        'Add egg mixture and pasta water, stirring quickly to create creamy sauce.',
+                        'Serve immediately with extra cheese and pepper.'
+                    ]
+                }
+            ],
+            'mexican': [
+                {
+                    name: 'Street-Style Tacos',
+                    prepTime: '15 mins',
+                    cookTime: '20 mins',
+                    servings: '4',
+                    ingredients: [
+                        '500g flank steak or chicken',
+                        'Corn tortillas',
+                        'White onion, diced',
+                        'Fresh cilantro',
+                        'Lime wedges',
+                        'Salsa verde',
+                        'Cumin, paprika, garlic powder',
+                        'Salt and pepper'
+                    ],
+                    instructions: [
+                        'Season meat with cumin, paprika, garlic powder, salt, and pepper.',
+                        'Grill or pan-sear meat over high heat until charred and cooked through.',
+                        'Let meat rest for 5 minutes, then dice into small pieces.',
+                        'Warm tortillas on a dry skillet.',
+                        'Fill tortillas with meat.',
+                        'Top with onion, cilantro, and salsa verde.',
+                        'Serve with lime wedges.'
+                    ]
+                }
+            ],
+            'thai': [
+                {
+                    name: 'Pad Thai',
+                    prepTime: '15 mins',
+                    cookTime: '15 mins',
+                    servings: '4',
+                    ingredients: [
+                        '200g rice noodles',
+                        '200g shrimp or chicken',
+                        '2 eggs',
+                        'Bean sprouts',
+                        'Peanuts, crushed',
+                        'Green onions',
+                        'Lime',
+                        'Tamarind paste',
+                        'Fish sauce',
+                        'Palm sugar',
+                        'Chili flakes'
+                    ],
+                    instructions: [
+                        'Soak rice noodles in warm water for 30 minutes.',
+                        'Mix tamarind paste, fish sauce, and palm sugar for sauce.',
+                        'Heat wok with oil, scramble eggs and set aside.',
+                        'Cook protein until done, set aside.',
+                        'Drain noodles and stir-fry in wok.',
+                        'Add sauce, protein, and eggs.',
+                        'Toss with bean sprouts, serve with peanuts, lime, and green onions.'
+                    ]
+                }
+            ],
+            'indian': [
+                {
+                    name: 'Butter Chicken',
+                    prepTime: '30 mins',
+                    cookTime: '40 mins',
+                    servings: '6',
+                    ingredients: [
+                        '800g chicken thighs',
+                        'Yogurt for marinade',
+                        'Garam masala, turmeric, cumin',
+                        '400g crushed tomatoes',
+                        '200ml heavy cream',
+                        'Butter (100g)',
+                        'Onions, garlic, ginger',
+                        'Kashmiri chili powder',
+                        'Fresh cilantro'
+                    ],
+                    instructions: [
+                        'Marinate chicken in yogurt and spices for at least 30 minutes.',
+                        'Cook marinated chicken in a hot pan until charred.',
+                        'In another pan, sauté onions, garlic, and ginger in butter.',
+                        'Add spices and cook until fragrant.',
+                        'Add crushed tomatoes and simmer for 15 minutes.',
+                        'Blend sauce until smooth, return to pan.',
+                        'Add chicken and cream, simmer for 10 minutes.',
+                        'Garnish with cilantro and serve with naan or rice.'
+                    ]
+                }
+            ],
+            'japanese': [
+                {
+                    name: 'Teriyaki Salmon',
+                    prepTime: '10 mins',
+                    cookTime: '15 mins',
+                    servings: '4',
+                    ingredients: [
+                        '4 salmon fillets',
+                        'Soy sauce (1/2 cup)',
+                        'Mirin (1/4 cup)',
+                        'Sake (1/4 cup)',
+                        'Brown sugar (3 tbsp)',
+                        'Ginger, grated',
+                        'Sesame seeds',
+                        'Green onions'
+                    ],
+                    instructions: [
+                        'Mix soy sauce, mirin, sake, sugar, and ginger for teriyaki sauce.',
+                        'Simmer sauce in a pan until slightly thickened.',
+                        'Season salmon with salt and pepper.',
+                        'Pan-sear salmon skin-side down for 5 minutes.',
+                        'Flip and cook for another 3 minutes.',
+                        'Brush with teriyaki sauce and cook for 2 more minutes.',
+                        'Garnish with sesame seeds and green onions.'
+                    ]
+                }
+            ],
+            'chinese': [
+                {
+                    name: 'Kung Pao Chicken',
+                    prepTime: '20 mins',
+                    cookTime: '15 mins',
+                    servings: '4',
+                    ingredients: [
+                        '500g chicken breast, cubed',
+                        'Peanuts (1/2 cup)',
+                        'Dried red chilies',
+                        'Soy sauce',
+                        'Rice vinegar',
+                        'Hoisin sauce',
+                        'Cornstarch',
+                        'Bell peppers',
+                        'Green onions',
+                        'Garlic and ginger'
+                    ],
+                    instructions: [
+                        'Marinate chicken in soy sauce and cornstarch.',
+                        'Mix sauce: soy sauce, vinegar, hoisin, and sugar.',
+                        'Heat wok with oil until smoking.',
+                        'Stir-fry chicken until golden, remove.',
+                        'Fry chilies until fragrant.',
+                        'Add garlic, ginger, and bell peppers.',
+                        'Return chicken, add sauce and peanuts.',
+                        'Toss everything together and serve hot.'
+                    ]
+                }
+            ],
+            'french': [
+                {
+                    name: 'Coq au Vin',
+                    prepTime: '30 mins',
+                    cookTime: '1.5 hours',
+                    servings: '6',
+                    ingredients: [
+                        '1 whole chicken, cut into pieces',
+                        'Red wine (750ml)',
+                        'Bacon (200g)',
+                        'Pearl onions',
+                        'Mushrooms',
+                        'Carrots',
+                        'Thyme and bay leaves',
+                        'Chicken stock',
+                        'Butter and flour'
+                    ],
+                    instructions: [
+                        'Brown chicken pieces in butter, set aside.',
+                        'Cook bacon until crispy, remove.',
+                        'Sauté onions, carrots, and mushrooms.',
+                        'Deglaze pan with wine, scraping up browned bits.',
+                        'Return chicken and bacon to pot.',
+                        'Add stock, thyme, and bay leaves.',
+                        'Simmer covered for 1.5 hours.',
+                        'Thicken sauce with butter-flour mixture.',
+                        'Serve with crusty bread or potatoes.'
+                    ]
+                }
+            ],
+            'greek': [
+                {
+                    name: 'Moussaka',
+                    prepTime: '40 mins',
+                    cookTime: '1 hour',
+                    servings: '8',
+                    ingredients: [
+                        '3 eggplants, sliced',
+                        '500g ground lamb or beef',
+                        'Onions and garlic',
+                        'Crushed tomatoes',
+                        'Cinnamon and oregano',
+                        'Béchamel sauce ingredients',
+                        'Parmesan cheese',
+                        'Olive oil'
+                    ],
+                    instructions: [
+                        'Slice and salt eggplant, let sit for 30 minutes.',
+                        'Brush with oil and bake until tender.',
+                        'Brown meat with onions and garlic.',
+                        'Add tomatoes, cinnamon, and oregano, simmer.',
+                        'Make béchamel: butter, flour, milk, nutmeg.',
+                        'Layer eggplant, meat sauce, and béchamel.',
+                        'Top with cheese.',
+                        'Bake at 350°F for 45 minutes until golden.'
+                    ]
+                }
+            ]
+        };
+
+        // State management
+        let currentUser = null;
+        let currentRecipe = null;
+        let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            displayWelcomeMessage();
+            setupNavigation();
+            setupCuisineSearch();
+            setupFormSubmit();
+            updateFavoritesDisplay();
+        });
+
+        // Display random welcome message
+        function displayWelcomeMessage() {
+            const randomMessage = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
+            document.getElementById('welcome-text').textContent = randomMessage;
+        }
+
+        // Navigation
+        function setupNavigation() {
+            const navBtns = document.querySelectorAll('.nav-btn');
+            navBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    navBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const pages = document.querySelectorAll('.page');
+                    pages.forEach(p => p.classList.remove('active'));
+                    
+                    const targetPage = btn.getAttribute('data-page');
+                    document.getElementById(`${targetPage}-page`).classList.add('active');
+                });
+            });
+        }
+
+        // Cuisine type-ahead search
+        function setupCuisineSearch() {
+            const cuisineInput = document.getElementById('cuisine');
+            const suggestions = document.getElementById('cuisine-suggestions');
+
+            cuisineInput.addEventListener('input', (e) => {
+                const value = e.target.value.toLowerCase().trim();
+                
+                if (value.length === 0) {
+                    suggestions.classList.remove('show');
+                    return;
+                }
+
+                const matches = cuisines.filter(cuisine => 
+                    cuisine.toLowerCase().includes(value)
+                );
+
+                if (matches.length > 0) {
+                    suggestions.innerHTML = matches.map(cuisine => 
+                        `<div class="cuisine-item" data-cuisine="${cuisine}">${cuisine}</div>`
+                    ).join('');
+                    suggestions.classList.add('show');
+
+                    // Add click handlers to suggestions
+                    suggestions.querySelectorAll('.cuisine-item').forEach(item => {
+                        item.addEventListener('click', () => {
+                            cuisineInput.value = item.getAttribute('data-cuisine');
+                            suggestions.classList.remove('show');
+                        });
+                    });
+                } else {
+                    suggestions.classList.remove('show');
+                }
+            });
+
+            // Close suggestions when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.cuisine-dropdown')) {
+                    suggestions.classList.remove('show');
+                }
+            });
+        }
+
+        // Form submission
+        function setupFormSubmit() {
+            document.getElementById('user-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const firstName = document.getElementById('firstName').value.trim();
+                const cuisine = document.getElementById('cuisine').value.trim();
+
+                if (!firstName || !cuisine) return;
+
+                currentUser = { firstName, cuisine };
+                
+                // Show greeting
+                displayGreeting();
+                
+                // Generate recipe
+                await generateRecipe(cuisine);
+            });
+        }
+
+        // Display personalized greeting
+        function displayGreeting() {
+            const greetingContainer = document.getElementById('greeting-container');
+            greetingContainer.innerHTML = `
+                <div class="greeting-section">
+                    <h2>Hello, ${currentUser.firstName}! 👋</h2>
+                    <p style="color: var(--sage); font-size: 1.1rem;">Let's find you something delicious from ${currentUser.cuisine} cuisine!</p>
+                </div>
+            `;
+        }
+
+        // Generate recipe recommendation
+        async function generateRecipe(cuisine) {
+            const container = document.getElementById('recommendation-container');
+            container.innerHTML = '<div class="loading">✨ Crafting your perfect recipe...</div>';
+
+            // Simulate API delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            const cuisineKey = cuisine.toLowerCase();
+            const recipes = recipeDatabase[cuisineKey] || recipeDatabase['italian'];
+            const recipe = recipes[Math.floor(Math.random() * recipes.length)];
+
+            currentRecipe = { ...recipe, id: Date.now(), cuisine };
+
+            displayRecipe(currentRecipe);
+        }
+
+        // Display recipe
+        function displayRecipe(recipe) {
+            const isFavorited = favorites.some(fav => fav.name === recipe.name);
+            
+            const container = document.getElementById('recommendation-container');
+            container.innerHTML = `
+                <div class="recipe-card">
+                    <h2>${recipe.name}</h2>
+                    <div class="recipe-meta">
+                        <span>⏱️ Prep: ${recipe.prepTime}</span>
+                        <span>🔥 Cook: ${recipe.cookTime}</span>
+                        <span>🍽️ Serves: ${recipe.servings}</span>
+                    </div>
+
+                    <div class="recipe-section">
+                        <h3>Ingredients</h3>
+                        <ul>
+                            ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="recipe-section">
+                        <h3>Instructions</h3>
+                        <ol>
+                            ${recipe.instructions.map(inst => `<li>${inst}</li>`).join('')}
+                        </ol>
+                    </div>
+
+                    <div class="recipe-actions">
+                        <button class="action-btn like-btn" onclick="likeRecipe()">
+                            👍 Like
+                        </button>
+                        <button class="action-btn dislike-btn" onclick="dislikeRecipe()">
+                            👎 Not for me
+                        </button>
+                        <button class="action-btn favorite-btn ${isFavorited ? 'favorited' : ''}" onclick="toggleFavorite()">
+                            ${isFavorited ? '⭐ Favorited' : '⭐ Add to Favorites'}
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Like recipe
+        function likeRecipe() {
+            const btn = document.querySelector('.like-btn');
+            btn.classList.toggle('liked');
+            if (btn.classList.contains('liked')) {
+                btn.innerHTML = '❤️ Loved it!';
+            } else {
+                btn.innerHTML = '👍 Like';
+            }
+        }
+
+        // Dislike recipe - get new recipe
+        async function dislikeRecipe() {
+            if (currentUser) {
+                await generateRecipe(currentUser.cuisine);
+            }
+        }
+
+        // Toggle favorite
+        function toggleFavorite() {
+            if (!currentRecipe) return;
+
+            const index = favorites.findIndex(fav => fav.name === currentRecipe.name);
+            
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(currentRecipe);
+            }
+
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            displayRecipe(currentRecipe);
+            updateFavoritesDisplay();
+        }
+
+        // Update favorites page
+        function updateFavoritesDisplay() {
+            const container = document.getElementById('favorites-container');
+            
+            if (favorites.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📚</div>
+                        <h3>No Favorites Yet</h3>
+                        <p>Start exploring recipes and save your favorites here!</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="favorites-grid">
+                        ${favorites.map((recipe, index) => `
+                            <div class="favorite-card" onclick="viewFavoriteRecipe(${index})">
+                                <h3>${recipe.name}</h3>
+                                <p>${recipe.cuisine} Cuisine</p>
+                                <p style="color: var(--charcoal); margin-top: 0.5rem;">
+                                    ⏱️ ${recipe.prepTime} | 🔥 ${recipe.cookTime}
+                                </p>
+                                <button class="remove-favorite" onclick="event.stopPropagation(); removeFavorite(${index})">
+                                    Remove from favorites
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+
+        // View favorite recipe details
+        function viewFavoriteRecipe(index) {
+            currentRecipe = favorites[index];
+            
+            // Switch to home page
+            document.querySelector('[data-page="home"]').click();
+            
+            // Scroll to recipe
+            displayRecipe(currentRecipe);
+            document.getElementById('recommendation-container').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        // Remove favorite
+        function removeFavorite(index) {
+            favorites.splice(index, 1);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoritesDisplay();
+            
+            // Update current recipe display if it's the one being removed
+            if (currentRecipe) {
+                displayRecipe(currentRecipe);
+            }
+        }
+    </script>
+</body>
+</html>
